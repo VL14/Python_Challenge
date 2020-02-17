@@ -15,23 +15,32 @@ with open(pybank_csv, 'r') as csvfile:
 #Store count to print and export late
 rowcount = (count-1)
 
-#Set initial value for sum variable
-totalprofit = 0
-
 # Determine total amount of profit/loss
 with open(pybank_csv, 'r') as csvfile:
 
-    #Assign variables to each column for readability within code
-    #date = date(budget_data[0])
-    #profit_loss = int(row[1])
-    
-    # Skip the column names
-    csvfile.readline()
+    #Set initial value for sum variable
+    totalprofit = 0
 
-    # Split the current line into a list: line
+    #Define the delimiter for each line
     column = csvfile.readline().split(',')
 
     #Run through file and sum all profits/losses
-    for row in csvfile:
-        totalprofit = (totalprofit + int(column[1]))
-        print(totalprofit)
+    for column in csv.reader(csvfile):
+        conv_int = int(column[1])
+        totalprofit = (totalprofit + conv_int)
+    
+    print(totalprofit)
+    
+    #Calculate average daily change
+    Averagechange = round((totalprofit / rowcount),2)
+    print(Averagechange)
+
+    #Determine date and amount of greatest increase in profits
+    profit = []
+
+    for column in csv.reader(csvfile):
+        profit.append(int(column[1]))
+        
+    print(profit)
+    #print ("min value : ", min(profit))
+    #print ("max value : ", max(profit)) 
