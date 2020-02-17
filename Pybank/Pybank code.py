@@ -4,20 +4,34 @@ import csv
 # Path to collect data from the Pybank folder
 pybank_csv = os.path.join('..', 'Pybank', 'budget_data.csv')
 
-#Set initial amount for count variable
+#Set initial value for count variable
 count = 0
 
-with open(pybank_csv, 'r') as f:
-    for line in f:
+#Loop through file and count number of rows
+with open(pybank_csv, 'r') as csvfile:
+    for row in csvfile:
         count += 1
 
-#print ("There are " + str(count-1) + " number of data rows" )
+#Store count to print and export late
+rowcount = (count-1)
 
-#Assign variables to each column for readability within code
-#date = date(budget_data[0])
-#profit_loss = int(budget_data[1])
+#Set initial value for sum variable
+totalprofit = 0
 
-# Loop through looking for the video
-    #for row in csvreader:
-        #if row[0] == video:
-            #print(row[0] + " is rated " + row[1] + " with a rating of " + row[5])
+# Determine total amount of profit/loss
+with open(pybank_csv, 'r') as csvfile:
+
+    #Assign variables to each column for readability within code
+    #date = date(budget_data[0])
+    #profit_loss = int(row[1])
+    
+    # Skip the column names
+    csvfile.readline()
+
+    # Split the current line into a list: line
+    column = csvfile.readline().split(',')
+
+    #Run through file and sum all profits/losses
+    for row in csvfile:
+        totalprofit = (totalprofit + int(column[1]))
+        print(totalprofit)
