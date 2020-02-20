@@ -14,7 +14,6 @@ with open(pybank_csv, 'r') as csvfile:
 
 #Store count to print and export later
 rowcount = (count-1)
-print(f"Total Months: {rowcount}")
 
 # Determine total amount of profit/loss
 with open(pybank_csv, 'r') as csvfile:
@@ -24,28 +23,19 @@ with open(pybank_csv, 'r') as csvfile:
 
     #Define the delimiter for each line
     column = csvfile.readline().split(',')
+    
+    #Create an array to hold all profits for finding the max and min
+    profits=[]
 
-    #Run through file and sum all profits/losses
+    #Run through file to sum all profits/losses and populate profits array
     for column in csv.reader(csvfile):
         monthlyprofit = int(column[1])
+        profits.append(int(column[1]))
         totalprofit = (totalprofit + monthlyprofit)
-    
-    print(f"Total profit: ${totalprofit}")
     
     #Calculate average daily change
     Averagechange = round((totalprofit / rowcount),2)
-    print(f"Average Change: ${Averagechange}")
-
-    #Determine date and amount of greatest increase in profits
-    profit = []
-
-    #for column in csvfile:
-        profit.append(int(column[1]))
-        
-    #print("Profit list: " + str(profit))
-    #print ("min value : ", min(profit))
-    #print ("max value : ", max(profit)) 
-
+    
 #Create output header
 header_string = 'Financial Analysis\n--------------------\n'  
 
@@ -68,3 +58,12 @@ with open('output.csv', 'w', newline = '') as outfile:
       w.writerow([summary_string3])
       w.writerow([summary_string4])
       w.writerow([summary_string5])
+    
+#Print to screen
+print("\nFinancial Analysis\r")
+print('-'*20)
+print(f"\rTotal Months: {rowcount}\r")
+print(f"Total profit: ${totalprofit}\r")
+print(f"Average Change: ${Averagechange}\r")
+print (f"Greatest Increase in Profits : ", max(profits))
+print (f"\rGreatest Decrease In Profits : ", min(profits))
