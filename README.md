@@ -2,7 +2,7 @@
 Bootcamp homework #3
 
 PyBank reads in a financial csv file with 2 columns of data, one for the date and one for profits/losses.
-Several calculations are performed and returned in a table to both the terminal and an output file as shown below. Tables includes months of data, total profit, average change per month, and highest/lowest monthly profit.
+Several calculations are performed and returned in a table to both the terminal and an output file as shown below. Table output includes months of data, total profit, average change per month, and highest/lowest monthly profit.
 
 ![Table_Screenshot](https://user-images.githubusercontent.com/60408214/75097874-a5d9aa80-557d-11ea-8f12-40f7dff5b6e3.JPG)
 
